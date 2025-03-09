@@ -43,6 +43,13 @@ class Flat(models.Model):
         'Новостройка',
         null=True,
     )
+    likes = models.ManyToManyField(
+        User,
+        verbose_name='лайки',
+        null=True,
+        blank=True,
+
+    )
 
     has_balcony = models.NullBooleanField('Наличие балкона', db_index=True)
     active = models.BooleanField('Активно-ли объявление', db_index=True)
@@ -58,6 +65,7 @@ class Flat(models.Model):
 class Complaint(models.Model):
     user = models.ForeignKey(
         User,
+        verbose_name='жалоба',
         on_delete=models.SET_NULL,
         null=True
     )

@@ -8,6 +8,7 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('address', 'price', 'new_building', 'construction_year', 'town')
     list_editable = ['new_building']
     list_filter = ['new_building', 'price', 'rooms_number', 'floor', 'has_balcony', 'active']
+    raw_id_fields = ['likes']
 
 class ReportAdmin(admin.ModelAdmin):
     raw_id_fields = ['flat']
