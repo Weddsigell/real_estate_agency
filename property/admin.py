@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Flat
+from .models import Flat, Complaint
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -9,4 +9,8 @@ class AuthorAdmin(admin.ModelAdmin):
     list_editable = ['new_building']
     list_filter = ['new_building', 'price', 'rooms_number', 'floor', 'has_balcony', 'active']
 
+class ReportAdmin(admin.ModelAdmin):
+    raw_id_fields = ['flat']
+
 admin.site.register(Flat, AuthorAdmin)
+admin.site.register(Complaint, ReportAdmin)
