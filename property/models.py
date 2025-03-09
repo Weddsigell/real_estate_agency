@@ -51,7 +51,7 @@ class Flat(models.Model):
         blank=True,
     )
     owner_pure_phone = PhoneNumberField(
-        verbose_name='номер телефона',
+        verbose_name='нормализованный номер телефона',
         null=True,
         region=('RU')
     )
