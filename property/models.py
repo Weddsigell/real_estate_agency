@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
@@ -48,10 +49,18 @@ class Flat(models.Model):
         verbose_name='лайки',
         null=True,
         blank=True,
-
+    )
+    owner_pure_phone = PhoneNumberField(
+        verbose_name='номер телефона',
+        null=True,
+        region=('RU')
     )
 
-    has_balcony = models.NullBooleanField('Наличие балкона', db_index=True)
+    has_balcony = models.BooleanField(
+        'Наличие балкона',
+        null=True,
+        blank=True,
+        db_index=True)
     active = models.BooleanField('Активно-ли объявление', db_index=True)
     construction_year = models.IntegerField(
         'Год постройки здания',
