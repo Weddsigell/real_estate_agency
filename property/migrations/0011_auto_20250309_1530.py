@@ -12,6 +12,7 @@ def write_in_number_phone(apps, schema_editor):
             flat.owner_pure_phone = flat.owners_phonenumber
         else:
             flat.owner_pure_phone = None
+
         flat.save()
 
 class Migration(migrations.Migration):

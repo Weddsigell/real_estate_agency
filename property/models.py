@@ -91,11 +91,15 @@ class Complaint(models.Model):
         related_name='complaint'
     )
 
+    def __str__(self):
+        return f'жалоба на {self.flat}'
+
 class Owner(models.Model):
     owner = models.CharField(
         verbose_name='ФИО владельца',
         max_length=200,
         null=False,
+        db_index=True
     )
     owners_phonenumber = PhoneNumberField(
         verbose_name='Номер владельца',
@@ -108,3 +112,6 @@ class Owner(models.Model):
         verbose_name='Квартиры',
         related_name='owners'
     )
+
+    def __str__(self):
+        return f'{self.owner}'
