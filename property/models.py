@@ -51,12 +51,12 @@ class Flat(models.Model):
     new_building = models.BooleanField(
         'Новостройка',
         null=True,
+        db_index=True
     )
     likes = models.ManyToManyField(
         User,
         verbose_name='лайки',
         related_name='flats',
-        null=True,
         blank=True,
     )
     has_balcony = models.BooleanField(
@@ -83,7 +83,7 @@ class Complaint(models.Model):
     user = models.ForeignKey(
         User,
         verbose_name='жалоба',
-        related_name='complaint',
+        related_name='complaints',
         on_delete=models.SET_NULL,
         null=True
     )
@@ -95,7 +95,7 @@ class Complaint(models.Model):
         Flat,
         on_delete=models.CASCADE,
         verbose_name='квартира',
-        related_name='complaint'
+        related_name='complaints'
     )
 
     def __str__(self):
@@ -118,6 +118,7 @@ class Owner(models.Model):
         Flat,
         verbose_name='Квартиры',
         related_name='owners',
+        blank=True,
     )
 
     def __str__(self):
