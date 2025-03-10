@@ -6,8 +6,12 @@ from django.db import migrations
 def write_in_number_phone(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
 
-    for flat in Flat.objects.all():
-        parsed_number  = phonenumbers.parse(flat.owners_phonenumber, 'RU')
+    for flat in Flat.objects.all().iterator():
+        try:
+            parsed_number  = phonenumbers.parse(flat.owners_phonenumber, 'RU')
+        except phonenumbers.NumberParseException:
+            flat.owner_pure_phone = None
+
         if phonenumbers.is_valid_number(parsed_number):
             flat.owner_pure_phone = flat.owners_phonenumber
         else:
